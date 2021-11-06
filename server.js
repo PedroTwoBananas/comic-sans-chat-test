@@ -75,15 +75,12 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
+app.use(express.static('build'));
 
-  app.listen(port);
 
-// server.listen(9999, (err) => {
-//   if (err) {
-//     throw Error(err);
-//   }
-//   console.log("сервер запущен");
-// });
+server.listen(port, (err) => {
+  if (err) {
+    throw Error(err);
+  }
+  console.log("сервер запущен на порте ", port);
+});
