@@ -1,0 +1,8 @@
+.user-list {
+  background-color: rgb(93, 187, 187);
+  width: 300px;
+  height: 400px;
+  padding: 5px;
+  overflow: auto;
+}
+

@@ -1,0 +1,9 @@
+.chat-list {
+    background-color: #e4f2f1;
+    width: 500px;
+    height: 400px;
+    overflow: auto;
+    top: 150px;
+    right: 0;
+    
+}

@@ -1,0 +1,29 @@
+.user-item {
+  list-style-type: none;
+  border-radius: 15px;
+  border: solid 2px #e4f2f1;
+  margin: 10px;
+  padding: 5px;
+}
+
+.user-item-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user-item-image {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.user-item-name {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  color: black;
+  font-weight: bold;
+  border-radius: 15px;
+  background-color: #e4f2f1;
+  margin: 10px;
+  padding: 10px;
+}

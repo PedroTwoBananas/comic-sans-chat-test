@@ -1,0 +1,35 @@
+.header {
+  background-color: teal;
+  margin-top: 10px;
+  padding: 25px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header-user-image {
+  margin: 10px;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
+
+.header-user-name {
+  border: 1px solid rgb(93, 187, 187);
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #e4f2f1;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-weight: bold;
+  color: black;
+}
+
+.header-title {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-weight: bold;
+  font-size: 45px;
+  color: #e4f2f1;
+}
