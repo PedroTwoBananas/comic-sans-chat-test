@@ -2,6 +2,8 @@ const express = require("express");
 
 const app = express();
 const server = require("http").Server(app);
+const path = require('path');
+const port = process.env.PORT || 8080;
 const io = require("socket.io")(server);
 
 const room = {
@@ -73,9 +75,15 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(9999, (err) => {
-  if (err) {
-    throw Error(err);
-  }
-  console.log("сервер запущен");
-});
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+
+  app.listen(port);
+
+// server.listen(9999, (err) => {
+//   if (err) {
+//     throw Error(err);
+//   }
+//   console.log("сервер запущен");
+// });
