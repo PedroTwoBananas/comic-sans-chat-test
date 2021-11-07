@@ -11,8 +11,10 @@ function ChatItem({ data }) {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    socket.emit('message_delete', idMessage);
-    
+    socket.emit('message_delete', {idMessage, myUserId});
+    socket.on("deleted_message", (deletedMessage) =>
+      dispatch(deleteMessage(deletedMessage))
+    );
     // socket.on("message_add", (message) => dispatch(addMessage(message)))
     // dispatch(messageDelete(idMessage));
   };

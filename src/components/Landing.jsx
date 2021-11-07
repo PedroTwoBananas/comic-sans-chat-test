@@ -47,9 +47,9 @@ function Landing(props) {
     socket.on("message_add", (message) => {
       dispatch(addMessage(message));
     });
-    socket.on("deleted_message", (deletedMessage) =>
-      dispatch(deleteMessage(deletedMessage))
-    );
+    // socket.on("deleted_message", (deletedMessage) =>
+    //   dispatch(deleteMessage(deletedMessage))
+    // );
     props.history.push("/" + url);
   };
   return (

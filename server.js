@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 const server = require("http").Server(app);
-const path = require('path');
+const path = require("path");
 const port = process.env.PORT || 8080;
 const io = require("socket.io")(server);
 
@@ -35,7 +35,9 @@ io.on("connection", (socket) => {
       myUserImage,
       imageMessage,
     }) => {
+      const socketId = socket.id;
       const newMessage = {
+        socketId,
         textMessage,
         idMessage,
         myUserId,
@@ -47,15 +49,23 @@ io.on("connection", (socket) => {
       room.messages.push(newMessage);
       socket.emit("message_add", newMessage);
       socket.broadcast.emit("message_add", newMessage);
-
-      
     }
   );
 
-  socket.on('message_delete', (idMessage) => {
-    socket.emit('deleted_message', idMessage);
-    socket.broadcast.emit('deleted_message', idMessage);
-    room.messages = room.messages.filter(msg => msg.idMessage != idMessage);
+  socket.on("message_delete", ({ idMessage, myUserId }) => {
+    const socketId = socket.id;
+    room.messages.forEach((msg) => {
+      if (msg.idMessage === idMessage && msg.socketId === socketId) {
+        socket.emit("deleted_message", msg.idMessage);
+        // socket.broadcast.emit("deleted_message", msg.idMessage);
+        // room.messages = room.messages.filter(
+        //   (msg) => msg.idMessage != idMessage
+        // );
+      } else if (msg.idMessage === idMessage && msg.socketId !== socketId) {
+        socket.emit("deleted_message", msg.idMessage);
+      }
+    });
+
     console.log(room.messages);
   });
 
@@ -75,8 +85,7 @@ io.on("connection", (socket) => {
   });
 });
 
-app.use(express.static('build'));
-
+app.use(express.static("build"));
 
 server.listen(port, (err) => {
   if (err) {
